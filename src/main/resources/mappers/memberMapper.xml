@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.spring.javaclassS12.dao.MemberDAO">
+	
+	<select id="getMemberIdCheck" resultType="com.spring.javaclassS12.vo.MemberVO">
+		select * from sMember where mid = #{mid};
+	</select>
+	
+	<select id="getMemberNameCheck" resultType="com.spring.javaclassS12.vo.MemberVO">
+		select * from sMember where name = #{name};
+	</select>
+	
+	<select id="getQrCodeLoginCheck" resultType="String">
+		select publishDate from sQrCode where mid = #{mid} and name = #{qrCodeToken};
+	</select>
+	
+	<select id="getAccountSearch" resultType="com.spring.javaclassS12.vo.MemberVO">
+		select * from sMember where accountNumber = #{accountNumber};
+	</select>
+	
+	<select id="getMemberList" resultType="com.spring.javaclassS12.vo.MemberVO">
+		select *,datediff(now(), lastDate) as deleteDiff from sMember limit #{startIndexNo},#{pageSize};
+	</select>
+	
+	<select id="totRecCnt" resultType="int">
+		select count(*) from sBoard;
+	</select>
+	
+	<select id="getNewMemberCnt" resultType="int">
+		select count(*) from sMember where <![CDATA[datediff(now(), startDate) < 7]]> order by idx desc;
+	</select>
+	
+	<select id="getUserNoCnt" resultType="int">
+		select count(*) from sMember where userDel = 'OK';
+	</select>
+	
+	
+	<insert id="setMemberJoin">
+		insert into sMember values (default,#{vo.mid},#{vo.pwd},#{vo.name},#{vo.gender},#{vo.birth},#{vo.tel},#{vo.address},#{vo.email},#{vo.job},default,default,default,default,default,#{vo.photo},#{vo.accountNumber});
+	</insert>
+	
+	<insert id="setAccountCreate">
+		insert into sAccount values (default,#{vo.mid},default,default,default,default);
+		insert into sAccount values (default,#{vo.mid},'I',default,default,default);
+	</insert>
+	
+	<insert id="setQrCodeLogin">
+	  insert into sQrCode values (default,#{mid},#{qrCodeToken},#{today});
+	</insert>
+	
+	
+	<update id="setMemberPasswordUpdate">
+		update sMember set pwd = #{pwd} where mid = #{mid};
+	</update>
+	
+	<update id="setPwdChangeOk">
+		update sMember set pwd = #{pwd} where mid = #{mid};
+	</update>
+	
+	<update id="setMemberUpdate">
+		update sMember set name = #{vo.name}, email = #{vo.email}, gender = #{vo.gender}, birth = #{vo.birth}, tel = #{vo.tel}, address = #{vo.address}, job = #{vo.job}, photo = #{vo.photo} where mid=#{vo.mid};
+	</update>
+	
+	<update id="setUserDel">
+    update sMember set userDel = 'OK' where mid = #{mid};
+  </update>
+	
+</mapper>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.spring.javaclassS12.dao.SavingDAO">
+	
+	<insert id="setSavingSignup">
+		insert into saving values (default,#{vo.mid},#{vo.savingSw},#{vo.amount},#{vo.total_deposit},#{vo.savingAccount},#{vo.startDate},#{vo.paymentPeriod},#{vo.interest},#{vo.expiryDate},#{vo.totalAmount},#{vo.expectedInterest},#{vo.expectedTax},#{vo.expected_tax_amount},default);
+	</insert>
+	
+	<select id="getSavingIdCheck" resultType="com.spring.javaclassS12.vo.SavingVO">
+		select * from saving where mid = #{mid} and  savingSw = #{savingSw} and status = 'A';
+	</select>
+	
+	<select id="getSavingInfor" resultType="com.spring.javaclassS12.vo.SavingVO">
+		select * from saving where mid = #{mid};
+	</select>
+	
+</mapper>

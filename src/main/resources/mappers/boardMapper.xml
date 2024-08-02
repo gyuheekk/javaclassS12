@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.spring.javaclassS12.dao.BoardDAO">
+	
+	<select id="getBoardList" resultType="com.spring.javaclassS12.vo.BoardVO">
+		select *,datediff(wDate, now()) as date_diff,
+		  timestampdiff(hour, wDate, now()) as hour_diff
+		  from sBoard <if test="part != '전체게시판'"> where part = #{part} </if> 
+		  order by idx desc limit #{startIndexNo},#{pageSize};
+	</select>
+	
+	<select id="totRecCnt" resultType="int">
+		select count(*) from sBoard <if test="part != '전체게시판'"> where part = #{part} </if>;
+	</select>
+	
+	<select id="getBoardContent" resultType="com.spring.javaclassS12.vo.BoardVO">
+		select * from sBoard where idx = #{idx};
+	</select>
+	
+	<!-- <![CDATA[]]>       <![CDATA[]]> -->
+	<select id="getPreNexSearch" resultType="com.spring.javaclassS12.vo.BoardVO">
+	  <if test="str == 'preVo'">
+	    select idx,title from sBoard where <![CDATA[idx < #{idx}]]> order by idx desc limit 1;
+	  </if>
+	  <if test="str != 'preVo'">
+	    select idx,title from sBoard where <![CDATA[idx > #{idx}]]> order by idx limit 1;
+	  </if>
+	</select>
+	
+	<select id="getBoardReply" resultType="com.spring.javaclassS12.vo.BoardReplyVO">
+		select * from sBoardReply where boardIdx = #{idx} order by re_order;
+	</select>
+	
+	<select id="getBoardParentReplyCheck" resultType="com.spring.javaclassS12.vo.BoardReplyVO">
+		select * from sBoardReply where boardIdx = #{boardIdx} order by idx desc limit 1;
+	</select>
+	
+	<select id="getBoardSearchList" resultType="com.spring.javaclassS12.vo.BoardVO">
+		select * from sBoard where <if test="part != '전체게시판'"> part=#{part} and </if> ${search} like concat("%",#{searchString},"%") order by idx desc limit #{startIndexNo},#{pageSize};
+	</select>
+	
+	<select id="totRecCntSearch" resultType="int">
+		select count(*) from sBoard <if test="part != '전체게시판'"> where part = #{part} </if>;
+	</select>
+	
+	<select id="getBoardCount" resultType="int">
+		select count(*) from sBoard where part = #{part};
+	</select>
+	
+
+	<insert id="setBoardInput">
+	  insert into sBoard values (default,#{vo.mid},#{vo.title},#{vo.content},default,#{vo.openSw},default,#{vo.part});
+	</insert>
+	
+	<insert id="setBoardReplyInput">
+		insert into sBoardReply values (default,#{replyVO.boardIdx},#{replyVO.re_step},#{replyVO.re_order},#{replyVO.mid},default,#{replyVO.content});
+	</insert>
+	
+	
+	<update id="setReadNumPlus">
+	  update sBoard set readNum = readNum + 1 where idx = #{idx};
+	</update>
+	
+	<update id="setBoardUpdate">
+	  update sBoard set title=#{vo.title}, content=#{vo.content}, openSw=#{vo.openSw}, wDate=now(), part=#{vo.part} where idx=#{vo.idx};
+	</update>
+	
+	<update id="setReplyOrderUpdate">
+		update sBoardReply set re_order = re_order + 1 where boardIdx = #{boardIdx} and re_order > #{re_order};
+	</update>
+	
+	
+	<delete id="setBoardDelete">
+	  delete from sBoard where idx = #{idx};
+	</delete>
+	
+	<delete id="setBoardReplyDelete">
+	  delete from sBoardReply where idx = #{idx};
+	</delete>
+	
+	
+</mapper>

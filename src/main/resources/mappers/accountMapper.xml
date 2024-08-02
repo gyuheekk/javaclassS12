@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.spring.javaclassS12.dao.AccountDAO">
+	
+	<select id="getBalanceSearch" resultType="int">
+		select (select sum(money) from sAccount where (mid=#{mid} and flagSw='I') or (mid=#{mid} and flagSw='G'))
+						- (select sum(money) from sAccount where (mid=#{mid} and flagSw='C') or (mid=#{mid} and flagSw='E'));
+	</select>
+	
+	<select id="getTotalBalance" resultType="int">
+	select(select sum(money) from sAccount where (flagSw='I') or (flagSw='G'))
+					- (select sum(money) from sAccount where (flagSw='C') or (flagSw='E'));
+	</select>
+	
+	<select id="getTotalDeposit" resultType="int">
+		select sum(money) from sAccount where (flagSw='I') or (flagSw='G');
+	</select>
+	
+	<select id="getTotalWithdraw" resultType="int">
+		select sum(money) from sAccount where (flagSw='C') or (flagSw='E');
+	</select>
+
+	<select id="getAccInfor" resultType="com.spring.javaclassS12.vo.AccountVO">
+		select * from sAccount where mid = #{mid} order by idx desc limit 1;
+	</select>
+	
+	<select id="getAccountFavorite" resultType="com.spring.javaclassS12.vo.AccountVO">
+	  select * from sAccountFavorite where myId = #{mid};
+	</select>
+	
+	<select id="getAccountFavorite2" resultType="com.spring.javaclassS12.vo.AccountVO">
+		select * from sAccountFavorite where myId = #{mid} and accountNumber = #{accountNumber};
+	</select>
+	
+	<select id="getAccountHistory" resultType="com.spring.javaclassS12.vo.AccountVO">
+		select * from sAccount where mid = #{mid} order by idx desc;
+	</select>
+	
+	<select id="getAccountDaily" resultType="int">
+		select count(*) from sAccount where datediff(now(), accDate) = 0;
+	</select>
+	
+	<select id="getAccountDailyI" resultType="int">
+		select count(*) from sAccount where flagSw = 'I' and datediff(now(), accDate) = 0;
+	</select>
+	
+	<select id="getAccountDailyC" resultType="int">
+		select count(*) from sAccount where flagSw = 'C' and datediff(now(), accDate) = 0;
+	</select>
+	
+	<select id="getAccountDailyE" resultType="int">
+		select count(*) from sAccount where flagSw = 'E' and datediff(now(), accDate) = 0;
+	</select>
+	
+	<select id="getAccountDailyG" resultType="int">
+		select count(*) from sAccount where flagSw = 'G' and datediff(now(), accDate) = 0;
+	</select>
+	
+	<select id="totRecCnt" resultType="int">
+		select count(*) from sAccount where 
+		  <if test='flagSw != ""'>
+		    <if test='flagSw == "E"'>(flagSw = 'E' or flagSw = 'G') and</if>
+		    <if test='flagSw != "E"'>flagSw = #{flagSw} and</if>
+		  </if>
+		datediff(now(), accDate) = 0;
+	</select>
+	
+	<select id="getAccountDailyList" resultType="com.spring.javaclassS12.vo.AccountVO">
+		select * from sAccount where 
+		  <if test='flagSw != ""'>
+		    <if test='flagSw == "E"'>(flagSw = 'E' or flagSw = 'G') and</if>
+		    <if test='flagSw != "E"'>flagSw = #{flagSw} and</if>
+		  </if>
+		datediff(now(), accDate) = 0 order by idx desc limit #{startIndexNo},#{pageSize};
+	</select>
+	
+	
+	<insert id="setAccountInput">
+		<if test='vo.flagSw != "E"'>
+			insert into sAccount values (default,#{vo.mid},#{vo.flagSw},#{vo.money},#{vo.content},default);
+		</if>
+		<if test='vo.flagSw == "E"'>
+			insert into sAccount values (default,#{vo.mid},'E',#{vo.money},#{vo.content},default);
+			insert into sAccount values (default, #{vo.youId}, 'G', #{vo.money}, CONCAT('송금인 : ', #{vo.myId}), default);
+		</if>
+	</insert>
+	
+	<insert id="setAccountInputOk">
+		insert into sAccountFavorite values (default,#{aVo.myId},#{aVo.youId},#{aVo.accountNumber});
+	</insert>
+	
+	<insert id="setSavingAccountInput">
+		insert into savingAccount values (default,#{saVo.mid},#{saVo.savingAccount},#{saVo.savingSw},#{saVo.money},#{saVo.content},default);
+	</insert>
+	
+	
+	
+	<delete id="setAccountDelete">
+		delete from sAccountFavorite where idx = #{idx};
+	</delete>
+	
+</mapper>

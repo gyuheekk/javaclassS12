@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.spring.javaclassS12.dao.CardDAO">
+	
+	<select id="getCardInfor" resultType="com.spring.javaclassS12.vo.CardVO">
+		select * from sCard where mid = #{mid} order by idx desc;
+	</select>
+	
+	
+	<insert id="setCardSignup">
+		insert into sCard values (default, #{vo.mid}, #{vo.cardSw}, #{vo.cardContent}, default, #{vo.cardExpiryDate}, #{vo.cardNumber});
+	</insert>	
+	
+</mapper>
