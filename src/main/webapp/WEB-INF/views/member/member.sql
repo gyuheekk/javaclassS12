@@ -13,10 +13,6 @@ create table sMember (
   email					varchar(60) not null,		  								/* 이메일(아이디/비밀번호 분실시에 사용)-형식체크필수 */
   job						varchar(20),															/* 직업 */
   userDel   		char(2)  default 'NO',										/* 회원 탈퇴신청여부(NO:현재 활동중, OK:탈퇴신청중) */
-  level     		int default 4,														/* 회원등급(0:관리자, 1:VVIP(10억원이상), 2:VIP(3억원이상),
-  																																	3:우수회원(5000만원이상), 4:일반회원(500만원미만~신규가입회원),
-  																																	99:탈퇴신청회원 */
-  point		  		int default 100,													/* 회원 누적포인트 (가입포인트100점, 사이트 방문시 10포인트증가 (방문 포인트는 하루에 한 번)*/
   startDate 		datetime default now(),										/* 최초 가입일 */
   lastDate  		datetime default now(),										/* 마지막 접속일 */
 	photo		  		varchar(100) default 'noimage.jpg', 			/* 회원 사진 */

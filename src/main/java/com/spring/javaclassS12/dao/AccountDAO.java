@@ -47,6 +47,10 @@ public interface AccountDAO {
 	
 	public int getAccountDailyG(@Param("flagSw") String flagSw);
 
+	public int getDTotalDeposit(@Param("flagSw") String flagSw);
+
+	public int getDTotalWithdraw(@Param("flagSw") String flagSw);
+
 
 
 

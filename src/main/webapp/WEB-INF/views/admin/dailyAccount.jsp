@@ -42,11 +42,11 @@
       border-top: none;
       background-color: #ecf0f1;
     }
-    .btn-primary {
+    .btn-primary, .btn-secondary {
       background-color: #34495e;
       border-color: #34495e;
     }
-    .btn-primary:hover {
+    .btn-primary:hover, .btn-secondary:hover {
       background-color: #2c3e50;
       border-color: #2c3e50;
     }
@@ -71,76 +71,63 @@
       background-color: #34495e;
       border-color: #34495e;
     }
-  .custom-btn {
-    background-color: #34495e;
-    border-color: #34495e;
-    color: white;
-    text-decoration: none;
-  }
-  
-  .custom-btn:hover,
-  .custom-btn:focus,
-  .custom-btn:active,
-  .custom-btn.active {
-    background-color: #2c3e50 !important;
-    border-color: #2c3e50 !important;
-    color: white !important;
-    text-decoration: none !important;
-    box-shadow: none !important;
-  }
-  h4 {
-		  color: #FFFFFF;
-		  margin-bottom: 30px;
-		}
-  h4 .part-title {
-		  font-size: 0.7em;  /* 메인 제목의 70% 크기 */
-		  color: #FFFFFF;  /* 조금 더 연한 색상 */
-		  font-weight: normal;  /* 글씨 두께를 보통으로 */
-	}
-	.btn-secondary {
+    .custom-btn {
       background-color: #34495e;
       border-color: #34495e;
+      color: white;
+      text-decoration: none;
     }
-    .btn-secondary:hover {
-      background-color: #2c3e50;
-      border-color: #2c3e50;
+    .custom-btn:hover,
+    .custom-btn:focus,
+    .custom-btn:active,
+    .custom-btn.active {
+      background-color: #2c3e50 !important;
+      border-color: #2c3e50 !important;
+      color: white !important;
+      text-decoration: none !important;
+      box-shadow: none !important;
+    }
+    h4 {
+      color: #FFFFFF;
+      margin-bottom: 30px;
+    }
+    h4 .part-title {
+      font-size: 0.7em;
+      color: #FFFFFF;
+      font-weight: normal;
     }
   </style>
   <script>
-  	'use strict';
-  	
-  	function flagSwCheck() {
-  		let flagSw = $("#flagSw").val();
-  		location.href = "dailyAccount?pag=${pag}&pageSize=${pageSize}&flagSw="+flagSw;
-  	}
-  	
+    'use strict';
+    
+    function flagSwCheck() {
+      let flagSw = $("#flagSw").val();
+      location.href = "dailyAccount?pag=${pag}&pageSize=${pageSize}&flagSw="+flagSw;
+    }
   </script>
 </head>
 <body>
 <%
-	Date date = new Date();
-	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-	String strDate = sdf.format(date);
+  Date date = new Date();
+  SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+  String strDate = sdf.format(date);
 %>
 <div class="container-fluid">
-<h3 class="mb-4"><i class="fa-solid fa-user-gear icon-spacing mr-2"></i>은행 거래량 관리</h3>
-	<div class="text-right mb-2">
-    <a href="${ctp}/admin/bankAllAccount" class="btn custom-btn" style="font-size: 1.2rem; padding: 10px 20px;">전체 거래량 보기</a>
-	</div>
+<h3 class="mb-5"><i class="fa-solid fa-user-gear icon-spacing mr-2"></i>은행 거래량 관리</h3>
   <div class="card mb-4">
     <div class="card-header">
-	    <div class="d-flex justify-content-between align-items-center">
+      <div class="d-flex justify-content-between align-items-center">
         <h4 class="mb-0">일일 거래량 확인 <span class="part-title">[<%=strDate%>]</span> </h4>
-	        <form name="partForm">
+          <form name="partForm">
             <select name="flagSw" id="flagSw" onchange="flagSwCheck()" class="form-control">
               <option value="" ${flagSw=="" ? "selected" : ""}>전체보기</option>
               <option value="I" ${flagSw=="I" ? "selected" : ""}>입금</option>
               <option value="C" ${flagSw=="C" ? "selected" : ""}>출금</option>
               <option value="E" ${flagSw=="E" ? "selected" : ""}>계좌이체</option>
             </select>
-	        </form>
-	    </div>
-		</div>
+          </form>
+      </div>
+    </div>
     <div class="card-body">
       <table class="table table-hover">
         <thead>
@@ -228,20 +215,43 @@
         </div>
       </div>
     </div>
+    
     <div class="col-md-4">
       <div class="card">
-			  <div class="card-header">
-			    <h5 class="mb-0">일일 거래 요약</h5>
-			  </div>
-			  <div class="card-body">
-			    <p><b>총 거래액:</b> <fmt:formatNumber value="${totalTransactionAmount}" pattern="#,##0.##" />원</p>
-			    <p><b>평균 거래액:</b> <fmt:formatNumber value="${averageTransactionAmount}" pattern="#,##0.##" />원</p>
-			    <p><b>가장 빈번한 거래 유형:</b> ${mostFrequentTransactionType}</p>
-			  </div>
-			</div>
+        <div class="card-header">
+          <h5 class="mb-0">일일 거래 요약</h5>
+        </div>
+        <div class="card-body">
+          <p><b>총 입금액:</b> <fmt:formatNumber value="${DtotalDeposit}" pattern="#,##0.##" />원</p>
+          <p><b>총 출금액:</b> <fmt:formatNumber value="${DtotalWithdraw}" pattern="#,##0.##" />원</p>
+        </div>
+      </div>
     </div>
   </div>
-  <button type="button" class="btn btn-secondary" onclick="location.href='${ctp}/admin/adminContent';">관리자 메인화면</button>
+
+  <div class="card mt-4">
+    <div class="card-header">
+      <h5 class="mb-0">은행 잔고 현황</h5>
+    </div>
+    <div class="card-body">
+      <div class="row">
+        <div class="col-md-4 mb-3">
+          <p><b>현 은행 전체 잔고:</b></p>
+          <p class="h4"><fmt:formatNumber value="${totalBalance}" pattern="#,##0" />원</p>
+        </div>
+        <div class="col-md-4 mb-3">
+          <p><b>현 은행 전체 입금액:</b></p>
+          <p class="h4"><fmt:formatNumber value="${totalDeposit}" pattern="#,##0" />원</p>
+        </div>
+        <div class="col-md-4 mb-3">
+          <p><b>현 은행 전체 출금액:</b></p>
+          <p class="h4"><fmt:formatNumber value="${totalWithdraw}" pattern="#,##0" />원</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <button type="button" class="btn btn-secondary mt-3" onclick="location.href='${ctp}/admin/adminContent';">관리자 메인화면</button>
 </div>
 <jsp:include page="/WEB-INF/views/include/footer.jsp" />
 </body>

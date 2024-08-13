@@ -55,11 +55,26 @@
 				if(ans) location.href="${ctp}/";
     	}
     	
+    	// 금액 입력과 동시에 3자리마다 콤마찍기
+    	function formatCurrency(input) {
+			  // 숫자와 쉼표를 제외한 모든 문자 제거
+			  let value = input.value.replace(/[^\d,]/g, '');
+			  
+			  // 쉼표 제거
+			  value = value.replace(/,/g, '');
+			  
+			  // 3자리마다 쉼표 추가
+			  value = value.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+			  
+			  // 입력 필드에 포맷된 값 설정
+			  input.value = value;
+			}
+    	
     	// 직업 기타 입력란
 			function jobContentChange() {
 			    var jobContentSelect = document.getElementById("job");
 			    var otherjobContent = document.getElementById("otherjobContent");
-			    if (jobContentSelect.value === "EX") {
+			    if (jobContentSelect.value === "기타(직업)") {
 			        otherjobContent.style.display = "block";
 			        otherjobContent.focus();
 			    } else {
@@ -71,7 +86,7 @@
     	function loanContentChange() {
         var loanContentSelect = document.getElementById("loanContent");
         var otherLoanContent = document.getElementById("otherLoanContent");
-        if (loanContentSelect.value === "O") {
+        if (loanContentSelect.value === "기타(목적)") {
         		otherLoanContent.style.display = "block";
         		otherLoanContent.focus();
             $("#otherLoanContent").focus();
@@ -87,8 +102,8 @@
 	    		let position = $("#position").val().trim();
 	    		let workingPeriodY = $("#workingPeriodY").val();
 	    		let workingPeriodM = $("#workingPeriodM").val();
-	    		let monthlyIncome = $("#monthlyIncome").val();
-	    		let loanAmount = $("#loanAmount").val();
+	    		let monthlyIncome = $("#monthlyIncome").val().replaceAll(",","");
+	    		let loanAmount = $("#loanAmount").val().replaceAll(",","");
 	    		let loanPeriod = $("#loanPeriod").val();
 	    		let loanContent = $("#loanContent").val();
 	    		let otherLoanContent = $("#otherLoanContent").val();
@@ -98,7 +113,7 @@
 	    			$("#job").focus();
 	    			return false;
 	    		}
-	    		else if(job == "EX") {
+	    		else if(job == "기타(직업)") {
 	    			if(otherjobContent == "") {
 	    				alert("직업을 입력하세요.");
 	    				$("#otherjobContent").focus();
@@ -141,7 +156,7 @@
 	    			$("#loanContent").focus();
 	    			return false;
 	    		}
-	    		else if(loanContent == "O") {
+	    		else if(loanContent == "기타(목적)") {
 	    			if(otherLoanContent == "") {
 	    				alert("대출신청목적을 입력하세요.");
 	    				$("#otherLoanContent").focus();
@@ -150,6 +165,9 @@
 	    		}
       		
     			let ans = confirm("신용대출 신청서를 제출하시겠습니까?");
+    			$("#monthlyIncome").val(monthlyIncome);
+    			$("#loanAmount").val(loanAmount);
+    			
     			if(ans) myform.submit();
     		}
       	
@@ -176,14 +194,14 @@
         <td class="currency-input">
         	<select class="form-control" id="job" name="job" onchange="jobContentChange()">
             <option value="">- 직업을 선택해주세요 -</option>
-            <option value="H">회사원</option>
-            <option value="P">공무원</option>
-            <option value="G">군인</option>
-            <option value="D">의사</option>
-            <option value="L">법조인</option>
-            <option value="S">세무인</option>
-            <option value="J">자영업</option>
-            <option value="EX">기타</option>
+            <option value="회사원">회사원</option>
+            <option value="공무원">공무원</option>
+            <option value="군인">군인</option>
+            <option value="의사">의사</option>
+            <option value="법조인">법조인</option>
+            <option value="세무인">세무인</option>
+            <option value="자영업">자영업</option>
+            <option value="기타(직업)">기타</option>
           </select>
           <input type="text" id="otherjobContent" name="otherjobContent" class="form-control mt-2" placeholder="직업을 입력하세요" style="display:none;">
         </td>
@@ -210,17 +228,18 @@
 		    </td>
 			</tr>
       <tr>
-        <th style="vertical-align: middle;">월 소득</th>
-        <td class="currency-input">
-        	<div class="input-group">
-            <input type="number" name="monthlyIncome" id="monthlyIncome" class="form-control"><span class="input-group-text">원</span>
-	        </div>
-        </td>
-      </tr>
+			  <th style="vertical-align: middle;">월 소득</th>
+			  <td class="currency-input">
+			    <div class="input-group">
+			      <input type="text" name="monthlyIncome" id="monthlyIncome" class="form-control" oninput="formatCurrency(this)">
+			      <span class="input-group-text">원</span>
+			    </div>
+			  </td>
+			</tr>
       <tr>
         <th style="vertical-align: middle;">대출 신청 금액<br/>(100만원 단위로 신청)</th>
         <td class="currency-input">
-          <input type="text" name="loanAmount" id="loanAmount" class="form-control" />
+          <input type="text" name="loanAmount" id="loanAmount" class="form-control" oninput="formatCurrency(this)" />
         </td>
       </tr>
       <tr>
@@ -241,7 +260,7 @@
             <option value="교육 자금">교육 자금</option>
             <option value="사업 자금">사업 자금</option>
             <option value="차량 구입">차량 구입</option>
-            <option value="O">기타</option>
+            <option value="기타(목적)">기타</option>
           </select>
             <input type="text" id="otherLoanContent" name="otherLoanContent" class="form-control mt-2" placeholder="기타 대출 목적을 입력하세요" style="display:none;">
         </td>

@@ -131,7 +131,7 @@
         <a href="${ctp}/loan/loanSignup?loanSw=J" class="apply-button" onclick="alert('자동차 대출 신청페이지로 이동하시겠습니까?')">신청하기</a>
     </div> --%>
     
-    <div class="product-box">
+    <%-- <div class="product-box">
         <div class="product-icon"><i class="fa-solid fa-coins"></i></div>
         <div class="product-title">예/적금 담보대출</div>
         <div class="product-subtitle">정기예금이나 정기적금을 담보로 대출</div>
@@ -145,7 +145,7 @@
           <div class="info-item">상환방법 | 만기일시상환</div>
         </div> 
         <a href="${ctp}/loan/loanSignup?loanSw=M" class="apply-button" onclick="alert('예/적금 담보대출 신청페이지로 이동하시겠습니까?')">신청하기</a>
-    </div>
+    </div> --%>
 </div>
 
 <jsp:include page="/WEB-INF/views/include/footer.jsp" />

@@ -213,7 +213,6 @@ public class MemberController {
 		MemberVO vo = memberService.getMemberIdCheck(mid);
 		if(vo != null && vo.getEmail().equals(email)) {
 			// 정보확인후 정보가 맞으면 임시 비밀번호를 발급받아서 메일로 전송처리한다.
-			System.out.println("email : " + vo.getEmail());
 			UUID uid = UUID.randomUUID();
 			String pwd = uid.toString().substring(0,8);
 			

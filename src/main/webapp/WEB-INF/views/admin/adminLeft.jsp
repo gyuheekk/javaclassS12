@@ -56,19 +56,16 @@
       <a class="nav-link" href="${ctp}/" target="_top"><i class="fas fa-home mr-2"></i>홈으로</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="${ctp}/admin/bankBalance" target="adminContent"><i class="fa-solid fa-circle-dollar-to-slot mr-2"></i>은행 전체 잔고</a>
+      <a class="nav-link" href="${ctp}/admin/dailyAccount" target="adminContent"><i class="fa-solid fa-circle-dollar-to-slot mr-2"></i>일일 거래 관리</a>
     </li>
-    <li class="nav-item">
+    <!-- <li class="nav-item">
       <a class="nav-link" href="#" target="adminContent"><i class="fa-solid fa-sack-dollar mr-2"></i>대출관리</a>
-    </li>
+    </li> -->
     <li class="nav-item">
-      <a class="nav-link" href="${ctp}/admin/board/boardList?part=문의사항" target="adminContent"><i class="fas fa-question-circle mr-2"></i>문의사항 관리</a>
+      <a class="nav-link" href="${ctp}/admin/qna/qnaList" target="adminContent"><i class="fas fa-question-circle mr-2"></i>문의사항 관리</a>
     </li>
     <li class="nav-item">
       <a class="nav-link" href="${ctp}/admin/member/memberList" target="adminContent"><i class="fas fa-users mr-2"></i>회원 리스트</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="#" target="adminContent"><i class="fa-solid fa-web-awesome mr-2"></i>VIP 고객관리</a>
     </li>
   </ul>
 </div>

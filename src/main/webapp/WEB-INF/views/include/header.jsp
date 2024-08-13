@@ -148,7 +148,7 @@ header {
     	<hr/>
       <li><a href="#" onclick="openKakaoMap();">영업점찾기</a></li>
       <li><a href="${ctp}/board/boardList?part=FAQ">FAQ</a></li>
-      <li><a href="${ctp}/board/boardList?part=문의사항">문의사항</a></li>
+      <li><a href="${ctp}/qna/qnaList">QNA</a></li>
       <li><a href="${ctp}/board/boardList?part=공지사항">공지사항</a></li>
       <li><a href="#" onclick="openCalculator();">환율 계산기</a></li>
       <li><a href="${ctp}/member/memberMyProfile">My Profile</a></li>

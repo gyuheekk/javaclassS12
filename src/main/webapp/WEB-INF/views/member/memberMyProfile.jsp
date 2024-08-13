@@ -132,10 +132,6 @@
       <label for="name">주소 </label>
       <input type="text" class="form-control" value="${vo.address}" disabled />
     </div>
-     <div class="form-group">
-      <label for="name">회원등급 </label>
-      <input type="text" class="form-control" value="${strLevel}" disabled />
-    </div>
     
     <button type="button" class="btn btn-secondary" onclick="location.href='${ctp}/member/memberPwdCheck/i';">프로필 수정</button>
     <button type="button" class="btn btn-secondary" onclick="location.href='${ctp}/';">돌아가기</button>

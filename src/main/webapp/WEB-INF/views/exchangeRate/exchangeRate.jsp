@@ -206,6 +206,7 @@
         <td>
           <input type="date" name="searchdate" id="searchdate" class="form-control d-inline-block w-auto" value="<%=java.time.LocalDate.now() %>" />
           <input type="button" value="적용" onclick="searchdateCheck()" class="btn btn-secondary btn-sm" />
+          <a href="https://www.koreaexim.go.kr/site/program/financial/exchangeJSON?authkey=5wwuTWVo28tdVcpsD2HidBhEH5PS6b1f&searchdate=2024-07-22&data=AP01" target="_blank" class="btn btn-sm btn-darklight" title="임시체크하기">¤</a>
         </td>
       </tr>
       <tr>

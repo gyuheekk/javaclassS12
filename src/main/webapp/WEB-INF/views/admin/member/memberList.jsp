@@ -98,43 +98,6 @@
     	});
     });
     
-    // 각 레벨(등급)별 회원 보기...
-    function levelItemCheck() {
-    	let level = $("#levelItem").val();
-    	location.href = "${ctp}/admin/member/memberList?level="+level;
-    }
-    
-    // 회원별 각각의 등급 변경처리(ajax처리)
-    function levelChange(e) {
-    	let ans = confirm("선택한 회원의 등급을 변경하시겠습니까?");
-    	if(!ans) {
-    		location.reload();
-    		return false;
-    	}
-    	
-    	let items = e.value.split("/");
-    	let query = {
-    			level : items[0],
-    			idx   : items[1]
-    	}
-    	
-    	$.ajax({
-    		url  : "${ctp}/admin/member/memberLevelChange",
-    		type : "get",
-    		data : query,
-    		success:function(res) {
-    			if(res != "0") {
-    				alert("등급 수정 완료!");
-    				location.reload();
-    			}
-    			else alert("등급 수정 실패~~");
-    		},
-    		error : function() {
-    			alert("전송오류!");
-    		}
-    	});
-    }
-    
     // 30일 경과회원 삭제처리
     function memberDeleteOk(idx) {
     	let ans = confirm("선택하신 회원을 영구 삭제 하시겠습니까?");
@@ -153,7 +116,7 @@
     		});
     	}
     }
-    
+    /*
     // 전체선택
     function allCheck() {
       for(let i=0; i<myform.idxFlag.length; i++) {
@@ -204,13 +167,14 @@
     	  }
       });
     }
+    */
   </script>
 </head>
 <body>
     <div class="container">
-        <h3 class="text-center">전체 회원 리스트</h3>
+        <h3 class="text-center mb-5">전체 회원 리스트</h3>
         
-        <div class="row top-controls">
+        <%-- <div class="row top-controls">
             <div class="col-md-4">
                 <select name="levelItem" id="levelItem" class="form-control" onchange="levelItemCheck()">
                     <option value="999" ${level > 5  ? "selected" : ""}>전체보기</option>
@@ -237,27 +201,28 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --%>
 
         <form name="myform">
             <table class="table table-hover">
                 <thead class="thead-light">
                     <tr>
-                        <th><input type="checkbox" id="allCheck" onclick="allCheck()"/> 번호</th>
+                        <!-- <th><input type="checkbox" id="allCheck" onclick="allCheck()"/> 번호</th> -->
+                        <th>번호</th>
                         <th>아이디</th>
                         <th>성명</th>
                         <th>생일</th>
                         <th>성별</th>
                         <th>최종방문일</th>
                         <th>활동여부</th>
-                        <th>현재레벨</th>
                     </tr>
                 </thead>
                 <tbody>
                     <c:forEach var="vo" items="${vos}" varStatus="st">
                         <tr>
                             <td>
-                                <c:if test="${vo.level != 0}"><input type="checkbox" name="idxFlag" id="idxFlag${vo.idx}" value="${vo.idx}"/></c:if>
+                                <%-- <c:if test="${vo.level != 0}"><input type="checkbox" name="idxFlag" id="idxFlag${vo.idx}" value="${vo.idx}"/></c:if>
+                                <c:if test="${vo.level != 0}"></c:if> --%>
                                 ${vo.idx}
                             </td>
                             <td><a href="${ctp}/member/memberSearch?mid=${vo.mid}">${vo.mid}</a></td>
@@ -272,7 +237,7 @@
                                     <a href="javascript:memberDeleteOk(${vo.idx})" class="text-primary">(30일경과)</a>
                                 </c:if>
                             </td>
-                            <td>
+                            <%-- <td>
                                 <c:if test="${vo.level != 0}">
                                     <select name="level" id="level" class="form-control" onchange="levelChange(this)">
                                         <option value="1/${vo.idx}"  ${vo.level == 1  ? "selected" : ""}>VVIP</option>
@@ -284,7 +249,7 @@
                                     </select>
                                 </c:if>
                                 <c:if test="${vo.level == 0}">관리자</c:if>
-                            </td>
+                            </td> --%>
                         </tr>
                     </c:forEach>
                 </tbody>

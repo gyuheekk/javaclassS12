@@ -1,5 +1,6 @@
 show tables;
 
+/* 예/적금 처리 테이블 */
 create table saving (
     idx int auto_increment primary key,         		 -- 고유번호
     mid varchar(50) not null,                  			 -- 회원 ID

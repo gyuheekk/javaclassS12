@@ -11,14 +11,13 @@
 	<beans:bean id="noMemberInterceptor" class="com.spring.javaclassS12.interceptor.NoMemberInterceptor" />
 	
 	<interceptors>
-		
 		<interceptor> <!-- 로그인 안 한 회원 막기 -->
 			<mapping path="/account/**"/>
 			<mapping path="/card/**"/>
 			<mapping path="/loan/**"/>
 			<mapping path="/member/**"/>
-			<mapping path="/calendar/**"/>
 			<mapping path="/saving/**"/>
+			<mapping path="/qna/**"/>
 			<exclude-mapping path="/member/memberLogin"/>
 			<exclude-mapping path="/member/memberJoin"/>
 			<exclude-mapping path="/member/memberIdCheck"/>
@@ -29,7 +28,6 @@
 	    <exclude-mapping path="/member/qrLoginCheck/**"/>
 			<beans:ref bean="noMemberInterceptor" />
 		</interceptor>
-		
 	</interceptors>	
-		
-</beans:beans>
+	
+	</beans:beans>

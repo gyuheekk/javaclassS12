@@ -17,11 +17,13 @@ import com.spring.javaclassS12.pagination.PageProcess;
 import com.spring.javaclassS12.service.AccountService;
 import com.spring.javaclassS12.service.BoardService;
 import com.spring.javaclassS12.service.MemberService;
+import com.spring.javaclassS12.service.QnaService;
 import com.spring.javaclassS12.vo.AccountVO;
 import com.spring.javaclassS12.vo.BoardReplyVO;
 import com.spring.javaclassS12.vo.BoardVO;
 import com.spring.javaclassS12.vo.MemberVO;
 import com.spring.javaclassS12.vo.PageVO;
+import com.spring.javaclassS12.vo.QnaVO;
 
 @Controller
 @RequestMapping("/admin")
@@ -38,6 +40,9 @@ public class AdminController {
 	
 	@Autowired
 	PageProcess pageProcess;
+	
+	@Autowired
+  QnaService qnaService;
 	
 	@RequestMapping(value = "/adminMain", method = RequestMethod.GET)
 	public String adminMainGet() {
@@ -72,38 +77,19 @@ public class AdminController {
 		return "admin/adminContent";
 	}
 	
-	//관리자 화면에서 은행 총 잔액 보여주기
-	@RequestMapping(value = "/bankBalance", method = RequestMethod.GET)
-	public String bankBalanceGet(Model model) {
-		String flagSw = "";
-		
-		int totalBalance = accountService.getTotalBalance(flagSw); 
-		model.addAttribute("totalBalance", totalBalance);
-		
-		int totalDeposit = accountService.getTotalDeposit(flagSw); 
-		model.addAttribute("totalDeposit", totalDeposit);
-		
-		int totalWithdraw = accountService.getTotalWithdraw(flagSw); 
-		model.addAttribute("totalWithdraw", totalWithdraw);
-		
-		
-		return "admin/bankBalance";
-	}
-	
-	@RequestMapping(value = "/board/boardList", method = RequestMethod.GET)
+
+	@RequestMapping(value = "/qna/qnaList", method = RequestMethod.GET)
 	public String boardListGet(Model model,
 			@RequestParam(name="pag", defaultValue = "1", required = false) int pag,
 			@RequestParam(name="pageSize", defaultValue = "10", required = false) int pageSize,
 			@RequestParam(name="part", defaultValue = "전체게시판", required = false) String part) {
-		PageVO pageVO = pageProcess.totRecCnt(pag, pageSize, "board", part, "");
+		PageVO pageVO = pageProcess.totRecCnt(pag, pageSize, "qna", part, "");
 		
-		ArrayList<BoardVO> vos = boardService.getBoardList(pageVO.getStartIndexNo(), pageSize, part);
-		
-		model.addAttribute("part", part);
+		List<QnaVO> vos = qnaService.getQnaList(pageVO.getStartIndexNo(), pageSize);
 		model.addAttribute("vos", vos);
 		model.addAttribute("pageVO", pageVO);
 		
-		return "admin/board/boardList";
+		return "admin/qna/qnaList";
 	}
 	
 	@SuppressWarnings("unchecked")
@@ -171,11 +157,23 @@ public class AdminController {
 		// 일일 거래 횟수
 		int accountDaily = accountService.getAccountDaily();
 		
+		// 일일 잔고 구하기(일일 입금, 출금)
+		int DtotalDeposit = accountService.getDTotalDeposit(flagSw); 
+		int DtotalWithdraw = accountService.getDTotalWithdraw(flagSw);
+		
 		// 총 입금/출금/계좌이체/계좌입금 건수
 		int accountDailyI = accountService.getAccountDailyI(flagSw);
 		int accountDailyC = accountService.getAccountDailyC(flagSw);
 		int accountDailyE = accountService.getAccountDailyE(flagSw);
 		int accountDailyG = accountService.getAccountDailyG(flagSw);
+		
+		// 은행 총 잔고 구하기(잔고, 총입금, 총출금)
+		int totalBalance = accountService.getTotalBalance(flagSw); 
+		int totalDeposit = accountService.getTotalDeposit(flagSw); 
+		int totalWithdraw = accountService.getTotalWithdraw(flagSw); 
+		
+		
+		// 일일 총 입금액, 출금액 구하기
 		
 		model.addAttribute("vos", vos);
 		model.addAttribute("flagSw", flagSw);
@@ -185,14 +183,14 @@ public class AdminController {
 		model.addAttribute("accountDailyC", accountDailyC);
 		model.addAttribute("accountDailyE", accountDailyE);
 		model.addAttribute("accountDailyG", accountDailyG);
+		model.addAttribute("totalBalance", totalBalance);
+		model.addAttribute("totalDeposit", totalDeposit);
+		model.addAttribute("totalWithdraw", totalWithdraw);
+		model.addAttribute("DtotalDeposit", DtotalDeposit);
+		model.addAttribute("DtotalWithdraw", DtotalWithdraw);
 		return "admin/dailyAccount";
 	}
 	
-	@RequestMapping(value = "/bankAllAccount", method = RequestMethod.GET)
-	public String bankAllAccountGet() {
-		return "admin/bankAllAccount";
-	}
-	
-	
+
 }
 

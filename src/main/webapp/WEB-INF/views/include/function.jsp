@@ -143,7 +143,7 @@
     <a href="#Loan" class="w3-bar-item w3-button"><i class="fa-solid fa-sack-dollar"></i>대출</a>
     <div class="dropdown-content">
       <a href="${ctp}/loan/loanProduct">대출 종류 소개</a>
-      <a href="#sub10">내 대출 조회</a>
+      <a href="${ctp}/loan/loanCheck">내 대출 조회</a>
     </div>
   </div>
   <div class="dropdown">
@@ -175,7 +175,7 @@
     <div class="dropdown-content">
       <a href="${ctp}/board/boardList">전체게시판</a>
       <a href="${ctp}/board/boardList?part=공지사항">공지사항</a>
-      <a href="${ctp}/board/boardList?part=문의사항">문의사항</a>
+      <a href="${ctp}/qna/qnaList">문의사항</a>
       <a href="${ctp}/board/boardList?part=FAQ">FAQ</a>
       <%-- <a href="${ctp}/board/boardList?part=이벤트">이벤트</a> --%>
     </div>
@@ -183,7 +183,7 @@
   <div class="dropdown">
     <a href="#MyPage" class="w3-bar-item w3-button"><i class="fa-solid fa-user icon-spacing"></i>마이페이지</a>
     <div class="dropdown-content">
-      <a href="#">메세지 확인</a>
+      <!-- <a href="#">메세지 확인</a> -->
       <a href="${ctp}/member/memberMyProfile">내 프로필 보기</a>
       <a href="${ctp}/member/memberPwdCheck/i">내 프로필 수정</a>
       <a href="${ctp}/member/memberPwdCheck/p">비밀번호 변경</a>

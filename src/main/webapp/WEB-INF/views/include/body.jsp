@@ -125,27 +125,27 @@ document.addEventListener('DOMContentLoaded', function() {
 
 <div class="box-container">
   <a href="${ctp}/card/cardProduct" class="box" data-category="product">
-    <img src="${ctp}/images/Card1.png" class="centered-image">
+    <img src="${ctp}/images/001.png" class="centered-image">
   </a>
   <a href="${ctp}/saving/savingProduct" class="box" data-category="product">
-    <img src="${ctp}/images/Card2.png" class="centered-image">
+    <img src="${ctp}/images/002.png" class="centered-image">
   </a>
   <a href="#" onclick="openCalculator();" class="box" data-category="service">
-    <img src="${ctp}/images/Card3.png" class="centered-image">
+    <img src="${ctp}/images/003.png" class="centered-image">
   </a>
 </div>
 
 <div class="box-container">
-	<a href="${ctp}/loan/loanProduct" class="box" data-category="product">
-    <img src="${ctp}/images/Card4.png" class="centered-image">
+	<a href="${ctp}/card/cardProduct" class="box" data-category="product">
+    <img src="${ctp}/images/004.png" class="centered-image">
   </a>
   <a href="${ctp}/loan/loanProduct" class="box" data-category="product">
-    <img src="${ctp}/images/Card5.png" class="centered-image">
+    <img src="${ctp}/images/005.png" class="centered-image">
   </a>
-  <a href="${ctp}/loan/loanProduct" class="box" data-category="product">
-    <img src="${ctp}/images/Card6.png" class="centered-image">
+  <a href="${ctp}/saving/savingProduct" class="box" data-category="product">
+    <img src="${ctp}/images/006.png" class="centered-image">
   </a>
   <a href="#" onclick="openKakaoMap();" class="box" data-category="service">
-    <img src="${ctp}/images/Card7.png" class="centered-image">
+    <img src="${ctp}/images/007.png" class="centered-image">
   </a>
 </div>

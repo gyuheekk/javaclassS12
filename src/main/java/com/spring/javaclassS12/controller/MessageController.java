@@ -188,13 +188,44 @@ public class MessageController {
 		}
 		else if(msgFlag.equals("loanSOk")) {
 			model.addAttribute("msg", "신용대출 신청이 완료되었습니다.");
-			model.addAttribute("url", "/");
+			model.addAttribute("url", "/loan/loanCheck");
 		}
 		else if(msgFlag.equals("loanSNo")) {
 			model.addAttribute("msg", "신용대출 신청실패");
 			model.addAttribute("url", "/loan/loanProduct");
 		}
-		
+		else if(msgFlag.equals("loanJoinOk")) {
+			model.addAttribute("msg", "이미 신청한 대출정보가 있습니다.");
+			model.addAttribute("url", "/loan/loanCheck");
+		}
+		else if(msgFlag.equals("loanApproveOk")) {
+			model.addAttribute("msg", "이미 승인된 대출정보가 있습니다.");
+			model.addAttribute("url", "/loan/loanCheck");
+		}
+		else if(msgFlag.equals("loanHMoneyNo")) {
+			model.addAttribute("msg", "대출신청 가능 금액은, 등록금의 최대 70%입니다.");
+			model.addAttribute("url", "/loan/loanProduct");
+		}
+		else if(msgFlag.equals("loanHOk")) {
+			model.addAttribute("msg", "학자금대출 신청이 완료되었습니다.");
+			model.addAttribute("url", "/loan/loanCheck");
+		}
+		else if(msgFlag.equals("loanHNo")) {
+			model.addAttribute("msg", "학자금대출 신청실패");
+			model.addAttribute("url", "/loan/loanProduct");
+		}
+		else if(msgFlag.equals("loanMOk")) {
+			model.addAttribute("msg", "예/적금 담보대출 신청이 완료되었습니다.");
+			model.addAttribute("url", "/loan/loanCheck");
+		}
+		else if(msgFlag.equals("loanMNo")) {
+			model.addAttribute("msg", "예/적금 담보대출 신청실패");
+			model.addAttribute("url", "/loan/loanProduct");
+		}
+		else if(msgFlag.equals("qnaInputOk")) {
+			model.addAttribute("msg", "문의사항 작성이 완료되었습니다.");
+			model.addAttribute("url", "/pna/pnaList");
+		}
 		
 		return "include/message";
 	}

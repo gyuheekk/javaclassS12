@@ -19,7 +19,15 @@
 	<select id="getTotalWithdraw" resultType="int">
 		select sum(money) from sAccount where (flagSw='C') or (flagSw='E');
 	</select>
-
+	
+	<select id="getDTotalDeposit" resultType="int">
+		select sum(money) from sAccount where ((flagSw='I') or (flagSw='G')) and datediff(now(), accDate) = 0;
+	</select>
+	
+	<select id="getDTotalWithdraw" resultType="int">
+		select sum(money) from sAccount where ((flagSw='C') or (flagSw='E')) and datediff(now(), accDate) = 0;
+	</select>
+	
 	<select id="getAccInfor" resultType="com.spring.javaclassS12.vo.AccountVO">
 		select * from sAccount where mid = #{mid} order by idx desc limit 1;
 	</select>

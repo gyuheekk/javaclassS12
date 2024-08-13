@@ -23,12 +23,10 @@ public class CardServiceImpl implements CardService {
 		for(int i=0; i<16; i++) {
 			rand = (int)(Math.random()*10);
 			strRand += rand + "";
-			//System.out.println("srtRand : " + strRand);
 		}
 		
 		// 카드번호 : 1234-1234-1234-1234
 		String cardNumber = strRand.substring(0,4)+"-"+strRand.substring(4,8)+"-"+strRand.substring(8,12)+"-"+strRand.substring(12);
-		// System.out.println("cardNumber : " + cardNumber);
 		vo.setCardNumber(cardNumber);
 		
 		// 카드 만료날짜 
@@ -36,7 +34,6 @@ public class CardServiceImpl implements CardService {
 		LocalDate plusFiveYear = localDate.plusYears(5); // 5년을 더한 날짜 계산
 		String cardExpiryDate = "";
 		cardExpiryDate = plusFiveYear.toString(); // LocalDate를 문자열로 변환
-		// System.out.println("cardExpiryDate : " + cardExpiryDate);
 		
 		vo.setCardExpiryDate(cardExpiryDate);
 		

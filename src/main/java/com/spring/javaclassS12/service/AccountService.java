@@ -43,6 +43,10 @@ public interface AccountService {
 	
 	public int getAccountDailyG(String flagSw);
 
+	public int getDTotalDeposit(String flagSw);
+
+	public int getDTotalWithdraw(String flagSw);
+
 
 
 

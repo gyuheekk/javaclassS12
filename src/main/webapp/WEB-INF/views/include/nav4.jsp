@@ -80,8 +80,8 @@
             <div class="dropdown-menu">
                 <a href="${ctp}/loan/loanSignup?loanSw=S">신용대출</a>
                 <a href="${ctp}/loan/loanSignup?loanSw=H">학자금대출</a>
-                <a href="${ctp}/loan/loanSignup?loanSw=J">자동차대출</a>
-                <a href="${ctp}/loan/loanSignup?loanSw=M">예/적금 담보대출</a>
+                <%-- <a href="${ctp}/loan/loanSignup?loanSw=J">자동차대출</a>
+                <a href="${ctp}/loan/loanSignup?loanSw=M">예/적금 담보대출</a> --%>
             </div>
         </div>
         <div class="nav-item">

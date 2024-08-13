@@ -195,6 +195,7 @@
   			alert("전송오류!!")
   		}
   	});
+  	
   }
 	
 	//QR 로그인
@@ -230,8 +231,8 @@
 		    <table class="table table-bordered" style="width:600px; margin:0 auto">
 		      <tr>
 			      <td>
-				      <input type="text" name="mid" value="admin" placeholder="아이디 입력" autofocus required class="form-control mt-3 mb-3"/>
-				      <input type="password" name="pwd" value="1234" placeholder="비밀번호 입력" required class="form-control mb-3"/>
+				      <input type="text" name="mid" placeholder="아이디 입력" autofocus required class="form-control mt-3 mb-3"/>
+				      <input type="password" name="pwd" placeholder="비밀번호 입력" required class="form-control mb-3"/>
 			    	</td>
 			    	<td rowspan="2">
 				      <button type="submit" class="btn btn-primary mt-2" style="width: 100%; height: 100px;">로그인</button>

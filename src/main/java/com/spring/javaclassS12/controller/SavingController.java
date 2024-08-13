@@ -73,6 +73,7 @@ public class SavingController {
 		if(sVo != null) return "redirect:/message/savingInforYes";
 		
 		String savingAccount = savingService.createSavingAccount(); // 계좌만들기
+		
 		// 자율통장에 출금할 예치금이 있는지 체크
 		int balance = accountService.getBalanceSearch(vo.getMid());
 		if(balance < vo.getAmount()) {

@@ -97,9 +97,7 @@
       <select name="part" id="part" onchange="partCheck()" class="form-control">
         <option ${part=="전체게시판" ? "selected" : ""}>전체게시판</option>
         <option ${part=="공지사항" ? "selected" : ""}>공지사항</option>
-        <option ${part=="문의사항" ? "selected" : ""}>문의사항</option>
         <option ${part=="FAQ" ? "selected" : ""}>FAQ</option>
-        <option ${part=="이벤트" ? "selected" : ""}>이벤트</option>
       </select>
     </form>
     

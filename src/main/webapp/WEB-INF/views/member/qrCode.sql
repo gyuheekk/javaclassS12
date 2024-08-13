@@ -1,5 +1,6 @@
 show tables;
 
+/* QR로그인을 위한 테이블 */
 create table sQrCode (
 	idx 				int not null auto_increment primary key,
 	mid 				varchar(20) not null,

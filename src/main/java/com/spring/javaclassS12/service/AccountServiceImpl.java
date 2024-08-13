@@ -108,6 +108,16 @@ public class AccountServiceImpl implements AccountService {
 		return accountDAO.getAccountDailyG(flagSw);
 	}
 
+	@Override
+	public int getDTotalDeposit(String flagSw) {
+		return accountDAO.getDTotalDeposit(flagSw);
+	}
+
+	@Override
+	public int getDTotalWithdraw(String flagSw) {
+		return accountDAO.getDTotalWithdraw(flagSw);
+	}
+
 
 	
 

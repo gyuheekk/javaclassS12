@@ -47,13 +47,13 @@
       background-color: #0056b3;
       color: white;
     }
-    .btn-white {
+    /* .btn-white {
       background-color: #FFFFFF;
       color: black;
       border: none;
       padding: 8px 15px;
       border-radius: 5px;
-    }
+    } */
     .btn-white:hover {
       background-color: #EEEEEE;
       color: black;
@@ -114,7 +114,7 @@
     <div class="card-header">
     	<div class="d-flex justify-content-between align-items-center">
       	<h5 class="mb-0">금융 서비스 이용 현황</h5>
-      	<a href="#" class="btn btn-white">이용 현황 자세히 보기</a>
+      	<!-- <a href="#" class="btn btn-white">이용 현황 자세히 보기</a> -->
       </div>
     </div>
     <div class="card-body">
@@ -146,17 +146,10 @@ var salesChart = new Chart(ctx, {
         borderWidth: 1
       },
       {
-        label: '담보대출',
+        label: '학자금대출',
         data: [0, 0, 0, 25, 0, 0, 0, 0],
         backgroundColor: 'rgba(52, 152, 219, 0.8)',
         borderColor: '#3498DB',
-        borderWidth: 1
-      },
-      {
-        label: '주택대출',
-        data: [0, 0, 0, 16, 0, 0, 0, 0],
-        backgroundColor: 'rgba(93, 173, 226, 0.8)',
-        borderColor: '#5DADE2',
         borderWidth: 1
       },
       {

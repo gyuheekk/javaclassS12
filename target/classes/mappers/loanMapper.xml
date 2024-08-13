@@ -2,8 +2,36 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.spring.javaclassS12.dao.LoanDAO">
 	
+	<select id="getLoansIdCheck" resultType="com.spring.javaclassS12.vo.LoanSVO">
+		select * from sloanS where mid = #{mid} and status = '신청' or status = '승인';
+	</select>
+	
+	<select id="getLoanhIdCheck" resultType="com.spring.javaclassS12.vo.LoanHVO">
+		select * from sloanH where mid = #{mid} and status = '신청' or status = '승인';
+	</select>
+	
+	<select id="getLoanmIdCheck" resultType="com.spring.javaclassS12.vo.LoanMVO">
+		select * from sloanM where mid = #{mid} and status = '신청' or status = '승인';
+	</select>
+	
+	<select id="getLoansInfor" resultType="com.spring.javaclassS12.vo.LoanSVO">
+		select * from sloanS where mid = #{mid};
+	</select>
+	
+	<select id="getLoanhInfor" resultType="com.spring.javaclassS12.vo.LoanHVO">
+		select * from sloanH where mid = #{mid};
+	</select>
+	
+	<select id="getLoanmInfor" resultType="com.spring.javaclassS12.vo.LoanMVO">
+		select * from sloanM where mid = #{mid};
+	</select>
+	
 	<insert id="setLoanSInput">
 		insert into sloanS values (default,#{vo.mid},#{vo.job},#{vo.company},#{vo.position},#{vo.workingPeriod},#{vo.monthlyIncome},#{vo.loanAmount},#{vo.loanPeriod},#{vo.loanContent},#{vo.interesRate},#{vo.repaymentMethod},default);
+	</insert>
+	
+	<insert id="setLoanHInput">
+		insert into sloanH values (default,#{vo.mid},#{vo.school},#{vo.major},#{vo.admissionDate},#{vo.graduationDate},#{vo.grade},#{vo.studentNumber},#{vo.tuition},#{vo.loanAmount},#{vo.interesRate},#{vo.repaymentMethod},default);
 	</insert>
 	
 </mapper>

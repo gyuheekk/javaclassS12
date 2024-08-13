@@ -55,57 +55,87 @@
 				if(ans) location.href="${ctp}/";
     	}
     	
+    	// 금액 입력과 동시에 3자리마다 콤마찍기
+    	function formatCurrency(input) {
+			  // 숫자와 쉼표를 제외한 모든 문자 제거
+			  let value = input.value.replace(/[^\d,]/g, '');
+			  
+			  // 쉼표 제거
+			  value = value.replace(/,/g, '');
+			  
+			  // 3자리마다 쉼표 추가
+			  value = value.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+			  
+			  // 입력 필드에 포맷된 값 설정
+			  input.value = value;
+    	}
+    	
       	function loanCheck() {
       		let school = $("#school").val().trim();
 	    		let major = $("#major").val();
+	    		let admissionDateY = $("#admissionDateY").val().trim();
+	    		let admissionDateM = $("#admissionDateM").val().trim();
+	    		let graduationDateY = $("#graduationDateY").val().trim();
+	    		let graduationDateM = $("#graduationDateM").val().trim();
 	    		let grade = $("#grade").val().trim();
 	    		let studentNumber = $("#studentNumber").val().trim();
-	    		let tuition = $("#tuition").val();
-	    		let loanAmount = $("#loanAmount").val();
-	    		let loanPeriod = $("#loanPeriod").val();
+	    		let tuition = $("#tuition").val().replaceAll(",","");
+	    		let loanAmount = $("#loanAmount").val().replaceAll(",","");
       		
-	    		if(jobContent == "") {
-	    			alert("직업을 선택하세요.");
-	    			$("#jobContent").focus();
+	    		if(school == "") {
+	    			alert("학교명을 입력하세요.");
+	    			$("#school").focus();
 	    			return false;
 	    		}
-	    		if(jobContent == "") {
-	    			alert("직업을 선택하세요.");
-	    			$("#jobContent").focus();
+	    		else if(major == "") {
+	    			alert("학과를 입력하세요.");
+	    			$("#major").focus();
 	    			return false;
 	    		}
-	    		if(jobContent == "") {
-	    			alert("직업을 선택하세요.");
-	    			$("#jobContent").focus();
+	    		else if(admissionDateY == "") {
+	    			alert("입학일을 입력하세요.");
+	    			$("#admissionDateY").focus();
 	    			return false;
 	    		}
-	    		if(jobContent == "") {
-	    			alert("직업을 선택하세요.");
-	    			$("#jobContent").focus();
+	    		else if(admissionDateM == "") {
+	    			alert("입학일을 입력하세요.");
+	    			$("#admissionDateM").focus();
 	    			return false;
 	    		}
-	    		if(jobContent == "") {
-	    			alert("직업을 선택하세요.");
-	    			$("#jobContent").focus();
+	    		else if(graduationDateY == "") {
+	    			alert("졸업예정일을 입력하세요.");
+	    			$("#graduationDateY").focus();
 	    			return false;
 	    		}
-	    		if(jobContent == "") {
-	    			alert("직업을 선택하세요.");
-	    			$("#jobContent").focus();
+	    		else if(graduationDateM == "") {
+	    			alert("졸업예정일을 입력하세요.");
+	    			$("#graduationDateM").focus();
 	    			return false;
 	    		}
-	    		if(jobContent == "") {
-	    			alert("직업을 선택하세요.");
-	    			$("#jobContent").focus();
+	    		else if(grade == "") {
+	    			alert("학년을 입력하세요.");
+	    			$("#grade").focus();
 	    			return false;
 	    		}
-	    		if(jobContent == "") {
-	    			alert("직업을 선택하세요.");
-	    			$("#jobContent").focus();
+	    		else if(studentNumber == "") {
+	    			alert("학번을 입력하세요.");
+	    			$("#studentNumber").focus();
+	    			return false;
+	    		}
+	    		else if(tuition == "") {
+	    			alert("등록금 금액을 입력하세요.");
+	    			$("#tuition").focus();
+	    			return false;
+	    		}
+	    		else if(loanAmount == "") {
+	    			alert("대출신청금액을 입력하세요.");
+	    			$("#loanAmount").focus();
 	    			return false;
 	    		}
 	    		
     			let ans = confirm("학자금대출 신청서를 제출하시겠습니까?");
+    			$("#tuition").val(tuition);
+    			$("#loanAmount").val(loanAmount);
     			if(ans) myform.submit();
     		}
     </script>
@@ -119,7 +149,7 @@
     <div class="step">3</div>
 </div>
 <div class="container">
-    <form name="myform" method="post" action="loanS3">
+    <form name="myform" method="post" action="loanH">
         <table class="table table-bordered text-center">
             <tr>
                 <td colspan="2">
@@ -127,13 +157,13 @@
                 </td>
             </tr>
             <tr>
-                <th>학교명</th>
+                <th style="vertical-align: middle;">학교명</th>
                 <td class="currency-input">
                     <input type="text" name="school" id="school" class="form-control" />
                 </td>
             </tr>
             <tr>
-                <th>학과</th>
+                <th style="vertical-align: middle;">학과</th>
                 <td class="currency-input">
                     <input type="text" name="major" id="major" class="form-control" />
                 </td>
@@ -142,8 +172,8 @@
 					    <th style="vertical-align: middle;">입학일</th>
 					    <td class="currency-input">
 				        <div class="input-group">
-			            <input type="number" name="workingPeriodY" id="workingPeriodY" class="form-control"><span class="input-group-text">년</span>
-			            <input type="number" name="workingPeriodM" id="workingPeriodM" class="form-control ml-3"><span class="input-group-text">월</span>
+			            <input type="number" name="admissionDateY" id="admissionDateY" class="form-control"><span class="input-group-text">년</span>
+			            <input type="number" name="admissionDateM" id="admissionDateM" class="form-control ml-3" max="12" min="1"><span class="input-group-text">월</span>
 				        </div>
 					    </td>
 						</tr>
@@ -151,39 +181,33 @@
 					    <th style="vertical-align: middle;">졸업예정일</th>
 					    <td class="currency-input">
 				        <div class="input-group">
-			            <input type="number" name="workingPeriodY" id="workingPeriodY" class="form-control"><span class="input-group-text">년</span>
-			            <input type="number" name="workingPeriodM" id="workingPeriodM" class="form-control ml-3"><span class="input-group-text">월</span>
+			            <input type="number" name="graduationDateY" id="graduationDateY" class="form-control"><span class="input-group-text">년</span>
+			            <input type="number" name="graduationDateM" id="graduationDateM" class="form-control ml-3" max="12" min="1"><span class="input-group-text">월</span>
 				        </div>
 					    </td>
 						</tr>
             <tr>
-              <th>학년</th>
+              <th style="vertical-align: middle;">학년</th>
               <td class="currency-input">
                 <input type="number" name="grade" id="grade" class="form-control" max="4" min="1" />
               </td>
             </tr>
             <tr>
-                <th>학번</th>
+                <th style="vertical-align: middle;">학번</th>
                 <td class="currency-input">
                     <input type="text" name="studentNumber" id="studentNumber" class="form-control" />
                 </td>
             </tr>
             <tr>
-                <th>등록금 금액</th>
+                <th style="vertical-align: middle;">등록금 금액</th>
                 <td class="currency-input">
-                    <input type="text" name="tuition" id="tuition" class="form-control" />
+                    <input type="text" name="tuition" id="tuition" class="form-control" oninput="formatCurrency(this)" />
                 </td>
             </tr>
             <tr>
-                <th>대출 신청 금액</th>
+                <th style="vertical-align: middle;">대출 신청 금액</th>
                 <td class="currency-input">
-                    <input type="text" name="loanAmount" id="loanAmount" class="form-control" />
-                </td>
-            </tr>
-            <tr>
-                <th>대출 기간</th>
-                <td class="currency-input">
-                    <input type="text" name="loanPeriod" id="loanPeriod" class="form-control" />
+                    <input type="text" name="loanAmount" id="loanAmount" class="form-control" oninput="formatCurrency(this)" />
                 </td>
             </tr>
             <tr>
@@ -191,6 +215,8 @@
                     <input type="button" value="취소" onclick="cancel()" class="btn btn-secondary mr-2"/>
                     <input type="reset" value="다시입력" class="btn btn-secondary mr-2"/>
                     <input type="button" value="다음" onclick="loanCheck()" class="btn btn-secondary mr-2"/>
+                
+                		<input type="hidden" name="mid" value="${sMid}"/>
                 </td>
             </tr>
         </table>

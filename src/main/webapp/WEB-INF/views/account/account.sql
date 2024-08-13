@@ -37,6 +37,13 @@ select max(money) from sAccount;
 select * from sAccount where datediff(now(), accDate) = 0;
 select count(*) from sAccount where datediff(now(), accDate) = 0;
 
+select sum(money) from sAccount where ((flagSw='C') or (flagSw='E')) and datediff(now(), accDate) = 0;
+
+
+select((select sum(money) from sAccount where (flagSw='I') or (flagSw='G'))
+					- (select sum(money) from sAccount where (flagSw='C') or (flagSw='E'))) and datediff(now(), accDate) = 0;
+					
+
 select count(*) from sAccount where flagSw = 'I' and datediff(now(), accDate) = 0;
 select count(*) from sAccount where flagSw = 'C' and datediff(now(), accDate) = 0;
 select count(*) from sAccount where flagSw = 'E' and datediff(now(), accDate) = 0;
@@ -48,6 +55,9 @@ select * from sAccount order by idx desc limit 0,10;
 select * from sAccount where flagSw = 'I' and	datediff(now(), accDate) = 0 order by idx desc limit 0,10;
 
 select * from sAccount where flagSw = 'I' and datediff(now(), accDate) = 0 order by idx desc limit 0,10;
+
+select sum(money) from sAccount where ((flagSw='I') or (flagSw='G')) and datediff(now(), accDate) = 0;
+select sum(money) from sAccount where ((flagSw='C') or (flagSw='E')) and datediff(now(), accDate) = 0;
 
 select count(*) from sAccount where now();
 

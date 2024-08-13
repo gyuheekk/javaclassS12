@@ -233,6 +233,7 @@
       <div class="input-group mb-3">
         <div class="input-group-prepend">
           <span class="input-group-text">전화번호 </span> &nbsp;&nbsp;
+          	<c:set var="tel" value="${fn:split(vo.tel,'-')}" />
             <select name="tel1" class="custom-select">
               <option value="010" ${tel1 == '010' ? 'selected' : ''}>010</option>
               <option value="02"  ${tel1 == '02'  ? 'selected' : ''}>서울</option>
@@ -247,8 +248,8 @@
               <option value="062" ${tel1 == '062' ? 'selected' : ''}>광주</option>
             </select>-
         </div>
-        <input type="text" name="tel2" value="${tel2}" size=4 maxlength=4 class="form-control"/>-
-        <input type="text" name="tel3" value="${tel3}" size=4 maxlength=4 class="form-control"/>
+        <input type="text" name="tel2" value="${tel[1]}" size=4 maxlength=4 class="form-control"/>-
+        <input type="text" name="tel3" value="${tel[2]}" size=4 maxlength=4 class="form-control"/>
       </div>
     </div>
     <div class="form-group">
@@ -265,8 +266,14 @@
         <option ${vo.job == '기타' ? 'selected' : ''}>기타</option>
       </select>
     </div>
-    <div class="form-group">
+    
+		<div class="form-group">
       <label for="address">주소</label>
+      <c:set var="address" value="${fn:split(vo.address,'/')}"/>
+      <c:set var="postcode" value="${address[0]}"/>
+      <c:set var="roadAddress" value="${address[1]}"/>
+      <c:set var="detailAddress" value="${address[2]}"/>
+      <c:set var="extraAddress" value="${address[3]}"/>
       <div class="input-group mb-1">
         <input type="text" name="postcode" value="${postcode}" id="sample6_postcode" placeholder="우편번호" class="form-control">
         <div class="input-group-append">
@@ -281,6 +288,7 @@
         </div>
       </div>
     </div>
+    
     <button type="button" class="btn btn-secondary" onclick="fCheck()">회원 정보 수정</button> &nbsp;
     <button type="reset" class="btn btn-secondary">다시작성</button> &nbsp;
     <button type="button" class="btn btn-secondary" onclick="location.href='${ctp}/';">돌아가기</button>
