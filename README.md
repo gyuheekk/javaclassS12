@@ -5,6 +5,4 @@ Springframework Project
 -링크 삽입하기
 <https://www.naver.com>
 
-![Visitors](https://visitor-badge.glitch.me/badge?page_id=gyuheekk.javaclassS12)
-
 
