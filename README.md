@@ -26,6 +26,12 @@ Jquery
 apache tomcat
 <img src="https://img.shields.io/badge/APACHE TOMCAT-F8DC75?style=for-the-badge&logo=APACHE TOMCAT&logoColor=white">
 
+Bootstrap
+<img src="https://img.shields.io/badge/Bootstrap4-7952B3?style=for-the-badge&logo=Bootstrap&logoColor=white">
+
+Font Awesome
+<img src="https://img.shields.io/badge/Font Awesome-538DD7?style=for-the-badge&logo=Font Awesome&logoColor=white">
+
 
 -링크 삽입하기
 <https://www.naver.com>
