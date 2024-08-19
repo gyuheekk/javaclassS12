@@ -26,6 +26,9 @@ CSS3
 JavaScript
 <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=JavaScript&logoColor=white">
 
+Jquery
+<img src="https://img.shields.io/badge/jquery-0769AD?style=for-the-badge&logo=jquery&logoColor=white">
+
 
 -링크 삽입하기
 <https://www.naver.com>
