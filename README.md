@@ -24,7 +24,7 @@ Jquery
 <img src="https://img.shields.io/badge/jquery-0769AD?style=for-the-badge&logo=jquery&logoColor=white">
 
 apache tomcat
-<img src="https://img.shields.io/badge/APACHE TOMCAT-F8DC75?style=for-the-badge&logo=APACHE TOMCAT&logoColor=white">
+<img src="https://img.shields.io/badge/APACHE TOMCAT-F8DC75?style=for-the-badge&logo=APACHE TOMCAT&logoColor=black">
 
 Bootstrap
 <img src="https://img.shields.io/badge/Bootstrap4-7952B3?style=for-the-badge&logo=Bootstrap&logoColor=white">
