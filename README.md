@@ -1,8 +1,7 @@
-> # Springframework Project
-> ## 은행 어플리케이션 개발
-
 ![GHbank 로고_파랑](https://github.com/user-attachments/assets/d3af2838-289c-44ca-9080-1cac91dc1c77)
 
+> # Springframework Project
+> ## 은행 어플리케이션 개발
 
 ### 사용 기술 스택 
 - ![Java](https://img.shields.io/badge/java-007396?style=for-the-badge&logo=OpenJDK&logoColor=white) ![Spring](https://img.shields.io/badge/Spring-6DB33F?style=for-the-badge&logo=Spring&logoColor=white) ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=JavaScript&logoColor=black) ![jQuery](https://img.shields.io/badge/jquery-0769AD?style=for-the-badge&logo=jquery&logoColor=white)
