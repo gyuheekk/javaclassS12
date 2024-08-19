@@ -14,7 +14,7 @@ MySQL
 HTML5
 <img src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=HTML5&logoColor=white">
 
-CSS3
+CSS
 <img src="https://img.shields.io/badge/CSS-1572B6?style=for-the-badge&logo=CSS3&logoColor=white">
 
 JavaScript
@@ -23,6 +23,7 @@ JavaScript
 Jquery
 <img src="https://img.shields.io/badge/jquery-0769AD?style=for-the-badge&logo=jquery&logoColor=white">
 
+apache tomcat
 <img src="https://img.shields.io/badge/APACHE TOMCAT-F8DC75?style=for-the-badge&logo=APACHE TOMCAT&logoColor=white">
 
 
