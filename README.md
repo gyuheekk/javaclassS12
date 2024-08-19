@@ -1,5 +1,5 @@
 ># Springframework Project
-## 은행 어플리케이션 개발
+>## 은행 어플리케이션 개발
 
 ![GHbank 로고_파랑](https://github.com/user-attachments/assets/d3af2838-289c-44ca-9080-1cac91dc1c77)
 
