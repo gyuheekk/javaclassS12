@@ -9,8 +9,7 @@
 - ![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=HTML5&logoColor=white) ![CSS3](https://img.shields.io/badge/CSS-1572B6?style=for-the-badge&logo=CSS3&logoColor=white)
 - ![Bootstrap4](https://img.shields.io/badge/Bootstrap4-7952B3?style=for-the-badge&logo=Bootstrap&logoColor=white) ![Font Awesome](https://img.shields.io/badge/Font%20Awesome-538DD7?style=for-the-badge&logo=Font%20Awesome&logoColor=white)
 
-## 구현기능
-***
+### 구현기능
 *회원관리
 -회원가입, 일반로그인, QR로그인, 로그아웃
 -아이디찾기, 비밀번호 재설정
