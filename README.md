@@ -11,26 +11,26 @@
 - ![Bootstrap4](https://img.shields.io/badge/Bootstrap4-7952B3?style=for-the-badge&logo=Bootstrap&logoColor=white) ![Font Awesome](https://img.shields.io/badge/Font%20Awesome-538DD7?style=for-the-badge&logo=Font%20Awesome&logoColor=white)
 <br/>
 
-> ### 구현기능
->> * 회원관리
+ ### 구현기능
+  * 회원관리
   - 회원가입, 일반로그인, QR로그인, 로그아웃
   - 아이디찾기, 비밀번호 재설정
   - 마이페이지(내 정보 수정, 내 프로필 확인)
   - 회원탈퇴
     <br/>
 
-* 금융서비스
-  - 입금, 출금, 계좌이체, 거래내역조회
-  - 카드(상품소개, 카드발급, 조회)
-  - 대출(상품소개, 대출신청, 조회)
-  - 예/적금(상품소개, 상품신청, 조회)
-  <br/>
+  * 금융서비스
+    - 입금, 출금, 계좌이체, 거래내역조회
+    - 카드(상품소개, 카드발급, 조회)
+    - 대출(상품소개, 대출신청, 조회)
+    - 예/적금(상품소개, 상품신청, 조회)
+      <br/>
 
 * 기타서비스
   - 게시판(공지사항, QNA, FAQ)
   - 영업점찾기
   - 환율계산기
-  <br/>
+    <br/>
 
 * 관리자메뉴
   - 은행 잔고 조회
@@ -38,4 +38,4 @@
   - 사이트 이용 현황
   - 문의사항 관리
   - 회원리스트 조회
-  <br/>
+    <br/>
